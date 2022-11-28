@@ -37,11 +37,16 @@ func main() {
 
 func layout(g *gocui.Gui) error {
 	maxX, maxY := g.Size()
-	if v, err := g.SetView("hello", 0, 0, maxX-1, maxY-1); err != nil {
+	if v, err := g.SetView("hello", 0, 0, maxX, maxY); err != nil {
 		if err != gocui.ErrUnknownView {
 			return err
 		}
-		fmt.Fprintln(v, "这是一段中文！！") // 8
+		v.Title = "asc中文개를１９あるノン"
+		v.Wrap = true
+		fmt.Fprintln(v, "这是一段中文！！")
+		fmt.Fprintln(v, "고개를 치켜들고 세상을 똑바로 바라보라")
+		fmt.Fprintln(v, "村上春樹（１９４９－）である。小説、エッセイ、ノンフィクション")
+		fmt.Fprintln(v, `这是一段中文1！！这是一段中文2！！这是一段中文3！！这是一段中文4！！这是一段中文5！！这是一段中文6！！这是一段中文7！！这是一段中文8！！这是一段中文9！！这是一段中文10！！这是一段中文11！！这是一段中文12！！`)
 	}
 	return nil
 }

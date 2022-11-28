@@ -125,7 +125,7 @@ func (v *View) Name() string {
 // specified colors, taking into account if the cell must be highlighted. Also,
 // it checks if the position is valid.
 func (v *View) setRune(x, y int, ch rune, fgColor, bgColor Attribute) error {
-	logrus.Infof("setRune '%v' at (%x, %d)", ch, x, y)
+	logrus.Infof("setRune '%c' at (%x, %d)", ch, x, y)
 	maxX, maxY := v.Size()
 	if x < 0 || x >= maxX || y < 0 || y >= maxY {
 		return errors.New("invalid point")
@@ -288,6 +288,7 @@ func (v *View) Rewind() {
 
 // draw re-draws the view's contents.
 func (v *View) draw() error {
+	logrus.Info("View::draw called")
 	maxX, maxY := v.Size()
 
 	if v.Wrap {
@@ -300,20 +301,32 @@ func (v *View) draw() error {
 		v.viewLines = nil
 		for i, line := range v.lines {
 			if v.Wrap {
-				if len(line) < maxX {
+				if viewline_len(line) < maxX {
 					vline := viewLine{linesX: 0, linesY: i, line: line}
 					v.viewLines = append(v.viewLines, vline)
 					continue
 				} else {
-					for n := 0; n <= len(line); n += maxX {
-						if len(line[n:]) <= maxX {
+					/*for n := 0; n <= viewline_len(line); n += maxX {
+						if viewline_len(line[n:]) <= maxX {
 							vline := viewLine{linesX: n, linesY: i, line: line[n:]}
 							v.viewLines = append(v.viewLines, vline)
 						} else {
 							vline := viewLine{linesX: n, linesY: i, line: line[n : n+maxX]}
 							v.viewLines = append(v.viewLines, vline)
 						}
+					}*/
+					n := 0
+					vline := viewLine{linesX: 0, linesY: i, line: nil}
+					for idx := 0; idx < len(line); idx++ {
+						n += rune_len(line[idx].chr)
+						if n >= maxX {
+							v.viewLines = append(v.viewLines, vline)
+							vline = viewLine{linesX: n, linesY: i, line: nil}
+							n -= maxX
+						}
+						vline.line = append(vline.line, line[idx])
 					}
+					v.viewLines = append(v.viewLines, vline)
 				}
 			} else {
 				vline := viewLine{linesX: 0, linesY: i, line: line}
@@ -355,7 +368,7 @@ func (v *View) draw() error {
 			if err := v.setRune(x, y, c.chr, fgColor, bgColor); err != nil {
 				return err
 			}
-			x++
+			x += rune_len(c.chr)
 		}
 		y++
 	}

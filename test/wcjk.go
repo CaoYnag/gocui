@@ -1,0 +1,211 @@
+package main
+
+import (
+	"fmt"
+	"unicode"
+)
+
+var _DoubleSize = &unicode.RangeTable{
+	R16: []unicode.Range16{
+		{0x00A1, 0x00A1, 1}, {0x00A4, 0x00A4, 1}, {0x00A7, 0x00A8, 1},
+		{0x00AA, 0x00AA, 1}, {0x00AE, 0x00AE, 1}, {0x00B0, 0x00B2, 1},
+		{0x00B4, 0x00B4, 1}, {0x00B6, 0x00B6, 1}, {0x00B8, 0x00BA, 1},
+		{0x00BC, 0x00BC, 1}, {0x00BF, 0x00BF, 1}, {0x00C6, 0x00C6, 1},
+		{0x00D0, 0x00D0, 1}, {0x00D7, 0x00D8, 1}, {0x00DE, 0x00DE, 1},
+		{0x00E6, 0x00E6, 1}, {0x00E8, 0x00E8, 1}, {0x00EC, 0x00EC, 1},
+		{0x00F0, 0x00F0, 1}, {0x00F2, 0x00F2, 1}, {0x00F7, 0x00F8, 1},
+		{0x00FC, 0x00FC, 1}, {0x00FE, 0x00FE, 1}, {0x0101, 0x0101, 1},
+		{0x0111, 0x0111, 1}, {0x0113, 0x0113, 1}, {0x011B, 0x011B, 1},
+		{0x0126, 0x0126, 1}, {0x012B, 0x012B, 1}, {0x0131, 0x0131, 1},
+		{0x0138, 0x0138, 1}, {0x013F, 0x013F, 1}, {0x0144, 0x0144, 1},
+		{0x0148, 0x0148, 1}, {0x014D, 0x014D, 1}, {0x0152, 0x0152, 1},
+		{0x0166, 0x0166, 1}, {0x016B, 0x016B, 1}, {0x01CE, 0x01CE, 1},
+		{0x01D0, 0x01D0, 1}, {0x01D2, 0x01D2, 1}, {0x01D4, 0x01D4, 1},
+		{0x01D6, 0x01D6, 1}, {0x01D8, 0x01D8, 1}, {0x01DA, 0x01DA, 1},
+		{0x01DC, 0x01DC, 1}, {0x0251, 0x0251, 1}, {0x0261, 0x0261, 1},
+		{0x02C4, 0x02C4, 1}, {0x02C7, 0x02C7, 1}, {0x02C9, 0x02C9, 1},
+		{0x02CD, 0x02CD, 1}, {0x02D0, 0x02D0, 1}, {0x02D8, 0x02D8, 1},
+		{0x02DD, 0x02DD, 1}, {0x02DF, 0x02DF, 1}, {0x0391, 0x0391, 1},
+		{0x03A3, 0x03A3, 1}, {0x03B1, 0x03B1, 1}, {0x03C3, 0x03C3, 1},
+		{0x0401, 0x0401, 1}, {0x0410, 0x0410, 1}, {0x0451, 0x0451, 1},
+		{0x1100, 0x115f, 1},
+		{0x2010, 0x2010, 1}, {0x2013, 0x2013, 1}, {0x2016, 0x2016, 1},
+		{0x2018, 0x2019, 1}, {0x201C, 0x201D, 1}, {0x2020, 0x2020, 1},
+		{0x2024, 0x2024, 1}, {0x2030, 0x2030, 1}, {0x2032, 0x2032, 1},
+		{0x2035, 0x2035, 1}, {0x203B, 0x203B, 1}, {0x203E, 0x203E, 1},
+		{0x2074, 0x2074, 1}, {0x207F, 0x207F, 1}, {0x2081, 0x2081, 1},
+		{0x20AC, 0x20AC, 1}, {0x2103, 0x2103, 1}, {0x2105, 0x2105, 1},
+		{0x2109, 0x2109, 1}, {0x2113, 0x2113, 1}, {0x2116, 0x2116, 1},
+		{0x2121, 0x2121, 1}, {0x2126, 0x2126, 1}, {0x212B, 0x212B, 1},
+		{0x2153, 0x2153, 1}, {0x215B, 0x215B, 1}, {0x2160, 0x2160, 1},
+		{0x2170, 0x2170, 1}, {0x2189, 0x2189, 1}, {0x2190, 0x2190, 1},
+		{0x2195, 0x2195, 1}, {0x21B8, 0x21B8, 1}, {0x21D2, 0x21D2, 1},
+		{0x21D4, 0x21D4, 1}, {0x21E7, 0x21E7, 1}, {0x2200, 0x2200, 1},
+		{0x2202, 0x2202, 1}, {0x2207, 0x2207, 1}, {0x220B, 0x220B, 1},
+		{0x220F, 0x220F, 1}, {0x2211, 0x2211, 1}, {0x2215, 0x2215, 1},
+		{0x221A, 0x221A, 1}, {0x221D, 0x221D, 1}, {0x2223, 0x2223, 1},
+		{0x2225, 0x2225, 1}, {0x2227, 0x2227, 1}, {0x222E, 0x222E, 1},
+		{0x2234, 0x2234, 1}, {0x223C, 0x223C, 1}, {0x2248, 0x2248, 1},
+		{0x224C, 0x224C, 1}, {0x2252, 0x2252, 1}, {0x2260, 0x2260, 1},
+		{0x2264, 0x2264, 1}, {0x226A, 0x226A, 1}, {0x226E, 0x226E, 1},
+		{0x2282, 0x2282, 1}, {0x2286, 0x2286, 1}, {0x2295, 0x2295, 1},
+		{0x2299, 0x2299, 1}, {0x22A5, 0x22A5, 1}, {0x22BF, 0x22BF, 1},
+		{0x2312, 0x2312, 1}, {0x2329, 0x2329, 1}, {0x232a, 0x232a, 1},
+		{0x2460, 0x2460, 1}, {0x249C, 0x249C, 1},
+		{0x24EB, 0x24EB, 1}, {0x2500, 0x2500, 1}, {0x2550, 0x2550, 1},
+		{0x2580, 0x2580, 1}, {0x2592, 0x2592, 1}, {0x25A0, 0x25A0, 1},
+		{0x25A3, 0x25A3, 1}, {0x25B2, 0x25B2, 1}, {0x25B6, 0x25B7, 1},
+		{0x25BC, 0x25BC, 1}, {0x25C0, 0x25C1, 1}, {0x25C6, 0x25C6, 1},
+		{0x25CB, 0x25CB, 1}, {0x25CE, 0x25CE, 1}, {0x25E2, 0x25E2, 1},
+		{0x25EF, 0x25EF, 1}, {0x2605, 0x2605, 1}, {0x2609, 0x2609, 1},
+		{0x260E, 0x260E, 1}, {0x261C, 0x261C, 1}, {0x261E, 0x261E, 1},
+		{0x2640, 0x2640, 1}, {0x2642, 0x2642, 1}, {0x2660, 0x2660, 1},
+		{0x2663, 0x2663, 1}, {0x2667, 0x2667, 1}, {0x266C, 0x266C, 1},
+		{0x266F, 0x266F, 1}, {0x269E, 0x269E, 1}, {0x26BF, 0x26BF, 1},
+		{0x26C6, 0x26C6, 1}, {0x26CF, 0x26CF, 1}, {0x26D5, 0x26D5, 1},
+		{0x26E3, 0x26E3, 1}, {0x26E8, 0x26E8, 1}, {0x26EB, 0x26EB, 1},
+		{0x26F4, 0x26F4, 1}, {0x26F6, 0x26F6, 1}, {0x26FB, 0x26FB, 1},
+		{0x26FE, 0x26FE, 1}, {0x273D, 0x273D, 1}, {0x2776, 0x2776, 1},
+		{0x2B56, 0x2B56, 1},
+		{0x2e80, 0x303e, 1}, {0x3040, 0x4dbf, 1},
+		{0x4e00, 0xa4cf, 1}, {0xa960, 0xa97f, 1},
+		{0xac00, 0xd7a3, 1},
+		{0xE000, 0xF8FF, 1}, {0xf900, 0xfaff, 1},
+		{0xfe10, 0xfe19, 1},
+		{0xfe30, 0xfe6f, 1},
+		{0xff00, 0xff60, 1},
+		{0xffe0, 0xffe6, 1},
+		{0xFFFD, 0xFFFD, 1},
+	},
+	R32: []unicode.Range32{
+		{0x1F100, 0x1F100, 1},
+		{0x1F110, 0x1F110, 1},
+		{0x1F130, 0x1F130, 1},
+		{0x1F170, 0x1F170, 1},
+		{0x1F18F, 0x1F18F, 1},
+		{0x1F19B, 0x1F19B, 1},
+		{0x20000, 0x2fffd, 1},
+		{0x30000, 0x3fffd, 1},
+		{0xF0000, 0xFFFFD, 1},
+		{0x100000, 0x10FFFD, 1},
+	},
+}
+
+func check_range_table(tb *unicode.RangeTable) {
+	if tb != nil {
+		r16 := tb.R16
+		var next uint16 = 0
+		for idx, i := range r16 {
+			if (i.Lo <= next) || (i.Hi < i.Lo) {
+				panic(fmt.Sprintf("error value at %d: [%x, %x]", idx, i.Lo, i.Hi))
+			}
+			next = i.Hi
+		}
+
+		r32 := tb.R32
+		var next32 uint32 = 0
+		for idx32, i32 := range r32 {
+			if (i32.Lo <= next32) || (i32.Hi < i32.Lo) {
+				panic(fmt.Sprintf("error value at %d: [%x, %x]", idx32, i32.Lo, i32.Hi))
+			}
+			next32 = i32.Hi
+		}
+		fmt.Printf("R16: %d, R32: %d\n", len(r16), len(r32))
+	}
+}
+func is16(ranges []unicode.Range16, r uint16) bool {
+	if len(ranges) <= 118 || r <= 255 {
+		for i := range ranges {
+			range_ := &ranges[i]
+			if r < range_.Lo {
+				return false
+			}
+			if r <= range_.Hi {
+				return range_.Stride == 1 || (r-range_.Lo)%range_.Stride == 0
+			}
+		}
+		return false
+	}
+
+	// binary search over ranges
+	lo := 0
+	hi := len(ranges)
+	for lo < hi {
+		m := lo + (hi-lo)/2
+		range_ := &ranges[m]
+		if range_.Lo <= r && r <= range_.Hi {
+			return range_.Stride == 1 || (r-range_.Lo)%range_.Stride == 0
+		}
+		if r < range_.Lo {
+			hi = m
+		} else {
+			lo = m + 1
+		}
+	}
+	return false
+}
+
+// is32 reports whether r is in the sorted slice of 32-bit ranges.
+func is32(ranges []unicode.Range32, r uint32) bool {
+	if len(ranges) <= 18 {
+		for i := range ranges {
+			range_ := &ranges[i]
+			if r < range_.Lo {
+				return false
+			}
+			if r <= range_.Hi {
+				return range_.Stride == 1 || (r-range_.Lo)%range_.Stride == 0
+			}
+		}
+		return false
+	}
+
+	// binary search over ranges
+	lo := 0
+	hi := len(ranges)
+	for lo < hi {
+		m := lo + (hi-lo)/2
+		range_ := ranges[m]
+		if range_.Lo <= r && r <= range_.Hi {
+			return range_.Stride == 1 || (r-range_.Lo)%range_.Stride == 0
+		}
+		if r < range_.Lo {
+			hi = m
+		} else {
+			lo = m + 1
+		}
+	}
+	return false
+}
+
+// Is reports whether the rune is in the specified table of ranges.
+func Is(rangeTab *unicode.RangeTable, r rune) bool {
+	r16 := rangeTab.R16
+	// Compare as uint32 to correctly handle negative runes.
+	if len(r16) > 0 && uint32(r) <= uint32(r16[len(r16)-1].Hi) {
+		return is16(r16, uint16(r))
+	}
+	r32 := rangeTab.R32
+	if len(r32) > 0 && r >= rune(r32[0].Lo) {
+		return is32(r32, uint32(r))
+	}
+	return false
+}
+
+func test_str(str string, tb *unicode.RangeTable) {
+	var count int = 0
+	for _, v := range str {
+		if Is(tb, v) {
+			count++
+		}
+	}
+	fmt.Println(count)
+}
+
+func main() {
+	check_range_table(_DoubleSize)
+	test_str("😀😇😘🧭🏙️", _DoubleSize)
+	test_str("고개를 치켜들고 세상을 똑바로 바라보라", _DoubleSize)
+	test_str("这是一段中文！！", _DoubleSize)
+	test_str("村上春樹（１９４９－）は日本の小説家、米文学翻訳家。１９８０年代以降の日本文学、現代文学を代表する文学者である。小説、エッセイ、ノンフィクションの他、翻訳も手がける。翻訳文体の影響が見られる文章と多彩な比喩に特徴がある。村上龍と共にW村上と呼ばれ、日本の現代文学の新しい世代の作家として注目を集める。『ノルウェイの森』がベストセラーになった時には、若い女性に人気の流行作家としての一面が強調され、一部には安易な恋愛小説だと批判する文芸評論家もいた", _DoubleSize)
+}
