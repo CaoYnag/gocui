@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/nsf/termbox-go"
+	"github.com/sirupsen/logrus"
 )
 
 // A View is a window. It maintains its own internal buffer and cursor
@@ -124,6 +125,7 @@ func (v *View) Name() string {
 // specified colors, taking into account if the cell must be highlighted. Also,
 // it checks if the position is valid.
 func (v *View) setRune(x, y int, ch rune, fgColor, bgColor Attribute) error {
+	logrus.Infof("setRune '%v' at (%x, %d)", ch, x, y)
 	maxX, maxY := v.Size()
 	if x < 0 || x >= maxX || y < 0 || y >= maxY {
 		return errors.New("invalid point")
